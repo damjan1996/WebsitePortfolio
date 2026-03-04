@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -9,9 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Glassmorphism Design System",
+  title: "Watch Pro | Luxury Meets Precision",
   description:
-    "A glassmorphism design system built with Next.js 16, TypeScript, and Tailwind CSS 4",
+    "Discover exceptional timepieces crafted with precision and passion. Watch Pro - where luxury meets innovation.",
 };
 
 export default function RootLayout({
@@ -21,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${outfit.variable} ${inter.variable} font-body antialiased`}>
         {children}
       </body>
     </html>

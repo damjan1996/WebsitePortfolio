@@ -39,3 +39,21 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# pencil design files
+*.pen
+
+# playwright
+.playwright-mcp/
+
+# workflow / internal
+Workflow/
+
+# OS
+Thumbs.db
