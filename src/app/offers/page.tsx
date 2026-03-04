@@ -14,19 +14,71 @@ import { Truck, RotateCcw, ShieldCheck, Gift } from "lucide-react";
 const iconMap = { Truck, RotateCcw, ShieldCheck, Gift } as const;
 
 export const metadata: Metadata = {
-  title: "Special Offers",
+  title: "Special Offers — Save Up to 30% on Luxury Swiss Watches",
   description:
-    "Exceptional timepieces at exceptional prices. Don't miss these limited-time offers on Watch Pro's finest luxury watches.",
+    "Limited-time offers on Watch Pro luxury watches. Save up to 30% on premium Swiss timepieces including moonphase, dive, and racing chronograph watches. Free shipping, 5-year warranty, 30-day returns.",
+  alternates: { canonical: "/offers" },
   openGraph: {
-    title: "Watch Pro Special Offers",
+    title: "Watch Pro Special Offers — Save Up to 30%",
     description:
-      "Limited-time offers on premium luxury watches. Save on exceptional timepieces.",
+      "Save up to 30% on premium Swiss watches. Limited-time deals on moonphase, dive, and racing chronographs.",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1687078426457-89ce2b562eaf?w=1200&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Watch Pro Heritage Moonphase Limited Edition on sale",
+      },
+    ],
+  },
+  twitter: {
+    title: "Watch Pro Special Offers — Save Up to 30%",
+    description:
+      "Save up to 30% on premium Swiss watches. Limited-time deals on moonphase, dive, and racing chronographs.",
+    images: [
+      "https://images.unsplash.com/photo-1687078426457-89ce2b562eaf?w=1200&q=80",
+    ],
   },
 };
+
+function OffersJsonLd() {
+  const allOffers = [featuredOffer, ...dealProducts.map((p) => ({
+    name: p.name,
+    price: p.price,
+    originalPrice: p.originalPrice,
+    description: p.description,
+    image: p.image,
+    badge: p.badge,
+  }))];
+
+  const schema = allOffers.map((p) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name,
+    description: p.description,
+    image: p.image,
+    brand: { "@type": "Brand", name: "Watch Pro" },
+    offers: {
+      "@type": "Offer",
+      price: p.price.replace(/[$,]/g, ""),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://website-snowy-six-31.vercel.app/offers",
+    },
+  }));
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 export default function OffersPage() {
   return (
     <>
+      <OffersJsonLd />
       <Navigation />
       <main className="min-h-screen">
         {/* Hero */}
@@ -76,7 +128,7 @@ export default function OffersPage() {
                   {featuredOffer.originalPrice}
                 </span>
               </div>
-              <Button label="GRAB THIS DEAL" variant="accent" />
+              <Button label="GRAB THIS DEAL" href="/offers" variant="accent" />
             </div>
           </div>
         </section>
@@ -133,8 +185,8 @@ export default function OffersPage() {
           <CTABanner
             headline="Don't Miss Out"
             subline="These offers won't last forever. Secure your dream timepiece today."
-            buttonLabel="VIEW ALL OFFERS"
-            buttonHref="/offers"
+            buttonLabel="EXPLORE COLLECTION"
+            buttonHref="/products"
           />
         </section>
 

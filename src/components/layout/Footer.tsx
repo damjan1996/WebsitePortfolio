@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 interface FooterProps {
   heroLine1?: string;
   heroLine2?: string;
@@ -24,20 +22,24 @@ export default function Footer({
 
         {/* Footer Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between bg-[var(--secondary)] rounded-b-[var(--radius-xl)] h-auto sm:h-16 px-6 lg:px-10 py-4 sm:py-0 gap-3 sm:gap-0">
-          <div className="flex items-center gap-6">
-            <Link
-              href="#"
+          <nav aria-label="Social media links" className="flex items-center gap-6">
+            <a
+              href="https://facebook.com/watchpro"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[12px] font-medium tracking-[0.5px] text-white/70 hover:text-white/90 transition-colors"
             >
               FACEBOOK
-            </Link>
-            <Link
-              href="#"
+            </a>
+            <a
+              href="https://twitter.com/watchpro"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[12px] font-medium tracking-[0.5px] text-white/70 hover:text-white/90 transition-colors"
             >
               TWITTER
-            </Link>
-          </div>
+            </a>
+          </nav>
           <span className="text-[12px] font-medium tracking-[0.5px] text-white/70">
             2026
           </span>

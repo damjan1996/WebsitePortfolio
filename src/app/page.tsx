@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
@@ -11,9 +12,59 @@ import BlogCard from "@/components/ui/BlogCard";
 import { products, blogPosts } from "@/data/products";
 import { Watch, Shield, Award } from "lucide-react";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const galleryImages = [
+  {
+    src: "https://images.unsplash.com/photo-1546118729-b9a3e4812724?w=500&q=80",
+    alt: "Rose gold dress watch with leather strap on display",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1589988574803-455587b19171?w=500&q=80",
+    alt: "Stainless steel chronograph watch with black dial",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=500&q=80",
+    alt: "Swiss automatic watch movement close-up detail",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=500&q=80",
+    alt: "Luxury dive watch with sapphire crystal bezel",
+  },
+];
+
+function ProductJsonLd() {
+  const schema = products.slice(0, 3).map((p) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name,
+    description: p.description,
+    image: p.image,
+    category: p.category,
+    brand: { "@type": "Brand", name: "Watch Pro" },
+    offers: {
+      "@type": "Offer",
+      price: p.price.replace(/[$,]/g, ""),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `https://website-snowy-six-31.vercel.app/products`,
+    },
+  }));
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function Home() {
   return (
     <>
+      <ProductJsonLd />
       <Navigation />
       <main className="min-h-screen">
         {/* Hero Section */}
@@ -22,13 +73,15 @@ export default function Home() {
             <div className="flex flex-col gap-6 flex-1">
               <HeroBadge label="NEW COLLECTION 2026" />
               <h1 className="font-primary text-[36px] md:text-[48px] lg:text-[64px] font-extrabold tracking-[-1.5px] md:tracking-[-2px] lg:tracking-[-3px] text-[var(--foreground)] leading-[1.05]">
-                Precision in Every
+                Luxury Swiss Watches —
                 <br />
-                <span className="text-[var(--primary)]">Moment</span>
+                <span className="text-[var(--primary)]">Precision in Every Moment</span>
               </h1>
               <p className="text-[15px] md:text-[16px] leading-[1.6] text-[var(--muted-foreground)] max-w-[480px]">
                 Discover exceptional timepieces crafted with Swiss precision and
-                contemporary design. Where luxury meets innovation.
+                contemporary design. From premium chronographs to elegant dress
+                watches, each piece embodies innovation and heritage. Where luxury
+                meets craftsmanship.
               </p>
               <div className="flex items-center gap-4 flex-wrap">
                 <Button label="EXPLORE COLLECTION" href="/products" variant="primary" />
@@ -38,7 +91,7 @@ export default function Home() {
             <div className="relative w-full max-w-[520px] aspect-square rounded-[var(--radius-xl)] overflow-hidden bg-[var(--muted)]">
               <Image
                 src="https://images.unsplash.com/photo-1627794145862-2a82883c251b?w=800&q=80"
-                alt="Watch Pro featured timepiece"
+                alt="Watch Pro Chronograph Elite luxury Swiss watch with sapphire crystal"
                 fill
                 className="object-cover"
                 priority
@@ -80,19 +133,14 @@ export default function Home() {
           <div className="max-w-[1400px] mx-auto">
             <SectionHeader title="The Gallery" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-10">
-              {[
-                "https://images.unsplash.com/photo-1546118729-b9a3e4812724?w=500&q=80",
-                "https://images.unsplash.com/photo-1589988574803-455587b19171?w=500&q=80",
-                "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=500&q=80",
-                "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=500&q=80",
-              ].map((src, i) => (
+              {galleryImages.map((img, i) => (
                 <div
                   key={i}
                   className="relative aspect-square rounded-[var(--radius-lg)] overflow-hidden bg-[var(--muted)] group"
                 >
                   <Image
-                    src={src}
-                    alt={`Watch gallery ${i + 1}`}
+                    src={img.src}
+                    alt={img.alt}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 25vw"
@@ -109,7 +157,7 @@ export default function Home() {
             <SectionHeader
               title="Our Products"
               description="Explore our curated collection of luxury timepieces, each one a masterpiece of precision engineering."
-              ctaLabel="VIEW ALL"
+              ctaLabel="VIEW ALL WATCHES"
               ctaHref="/products"
             />
             <div className="flex items-center gap-3 mt-8 flex-wrap">
@@ -133,13 +181,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Timeless Collection Split */}
+        {/* Special Offers Teaser */}
         <section className="px-6 md:px-10 py-16 lg:py-24">
           <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden bg-[var(--muted)]">
               <Image
                 src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80"
-                alt="Timeless collection"
+                alt="Watch Pro timeless collection featuring classic luxury watches"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -157,11 +205,18 @@ export default function Home() {
                 elegance and modern innovation. Each piece is designed to be
                 cherished for generations.
               </p>
-              <Button
-                label="DISCOVER MORE"
-                href="/products"
-                variant="outline"
-              />
+              <div className="flex items-center gap-4 flex-wrap">
+                <Button
+                  label="DISCOVER MORE"
+                  href="/products"
+                  variant="outline"
+                />
+                <Button
+                  label="VIEW SPECIAL OFFERS"
+                  href="/offers"
+                  variant="ghost"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -172,7 +227,7 @@ export default function Home() {
             <SectionHeader
               title="From the Journal"
               description="Insights, stories, and guides from the world of horology."
-              ctaLabel="READ ALL"
+              ctaLabel="READ ALL ARTICLES"
               ctaHref="/about"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">

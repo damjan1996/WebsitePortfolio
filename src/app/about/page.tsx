@@ -12,13 +12,30 @@ import { Shield, Gem, Heart } from "lucide-react";
 const iconMap = { Shield, Gem, Heart } as const;
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Watch Pro — Swiss Luxury Watchmaking Since 1999",
   description:
-    "For over two decades, Watch Pro has been at the forefront of luxury watchmaking — combining Swiss precision with bold, contemporary design.",
+    "For over two decades, Watch Pro has been at the forefront of luxury watchmaking — combining Swiss precision with bold, contemporary design. 120 master watchmakers, 45 countries, 50,000+ timepieces crafted.",
+  alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Watch Pro",
+    title: "About Watch Pro — Swiss Luxury Watchmaking Since 1999",
+    description:
+      "For over two decades, Watch Pro has been at the forefront of luxury watchmaking. 120 master watchmakers, 45 countries worldwide.",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=1200&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Watch Pro workshop and craftsmanship",
+      },
+    ],
+  },
+  twitter: {
+    title: "About Watch Pro — Swiss Luxury Watchmaking Since 1999",
     description:
       "For over two decades, Watch Pro has been at the forefront of luxury watchmaking.",
+    images: [
+      "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=1200&q=80",
+    ],
   },
 };
 
@@ -63,7 +80,7 @@ export default function AboutPage() {
             <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden bg-[var(--muted)]">
               <Image
                 src={story.image}
-                alt="Our story"
+                alt="Watch Pro founders in the original Swiss workshop circa 1999"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -109,7 +126,7 @@ export default function AboutPage() {
             <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden bg-[var(--muted)]">
               <Image
                 src={craftsmanship.image}
-                alt="Craftsmanship"
+                alt="Master watchmaker hand-assembling a Swiss watch movement"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

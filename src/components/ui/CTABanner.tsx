@@ -11,7 +11,7 @@ export default function CTABanner({
   headline,
   subline,
   buttonLabel,
-  buttonHref = "#",
+  buttonHref = "/products",
 }: CTABannerProps) {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[var(--secondary)] rounded-[var(--radius-xl)] py-10 lg:py-12 px-8 lg:px-14">
@@ -19,7 +19,7 @@ export default function CTABanner({
         <h2 className="font-primary text-[28px] lg:text-[40px] font-extrabold tracking-[-1px] text-[var(--secondary-foreground)]">
           {headline}
         </h2>
-        <p className="text-[16px] leading-[1.5] text-white/50 max-w-[400px]">
+        <p className="text-[16px] leading-[1.5] text-white/70 max-w-[400px]">
           {subline}
         </p>
       </div>

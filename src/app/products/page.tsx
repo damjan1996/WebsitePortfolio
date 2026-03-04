@@ -12,19 +12,82 @@ import { products } from "@/data/products";
 import { Award, Wrench, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Collection",
+  title: "Shop Luxury Swiss Watches — Chronographs, Dive & Dress Watches",
   description:
-    "Explore our curated collection of luxury timepieces. From precision chronographs to elegant dress watches, find the timepiece that defines your style.",
+    "Browse the Watch Pro collection of luxury Swiss watches. Premium chronographs from $1,599, dive watches to 300m, elegant dress timepieces with sapphire crystal. Free worldwide shipping on all orders.",
+  alternates: { canonical: "/products" },
   openGraph: {
-    title: "Watch Pro Collection",
+    title: "Shop Luxury Swiss Watches — Watch Pro Collection",
     description:
-      "Explore our curated collection of luxury timepieces — precision chronographs, dress watches, and more.",
+      "Browse the Watch Pro collection. Premium chronographs, dive watches, and dress timepieces starting from $1,599.",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1704782709398-b41f86135e4a?w=1200&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Watch Pro Titanium Force luxury Swiss watch",
+      },
+    ],
+  },
+  twitter: {
+    title: "Shop Luxury Swiss Watches — Watch Pro Collection",
+    description:
+      "Browse premium Swiss chronographs, dive watches, and dress timepieces starting from $1,599.",
+    images: [
+      "https://images.unsplash.com/photo-1704782709398-b41f86135e4a?w=1200&q=80",
+    ],
   },
 };
+
+function ProductsJsonLd() {
+  const schema = products.map((p) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name,
+    description: p.description,
+    image: p.image,
+    category: p.category,
+    brand: { "@type": "Brand", name: "Watch Pro" },
+    offers: {
+      "@type": "Offer",
+      price: p.price.replace(/[$,]/g, ""),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://website-snowy-six-31.vercel.app/products",
+    },
+  }));
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function BreadcrumbJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://website-snowy-six-31.vercel.app" },
+      { "@type": "ListItem", position: 2, name: "Products", item: "https://website-snowy-six-31.vercel.app/products" },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 export default function ProductsPage() {
   return (
     <>
+      <ProductsJsonLd />
+      <BreadcrumbJsonLd />
       <Navigation />
       <main className="min-h-screen">
         {/* Hero */}
@@ -72,7 +135,7 @@ export default function ProductsPage() {
             <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden bg-[var(--muted)]">
               <Image
                 src="https://images.unsplash.com/photo-1704782709398-b41f86135e4a?w=800&q=80"
-                alt="Titanium Force"
+                alt="Watch Pro Titanium Force ultra-light Swiss watch with ceramic bezel"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -91,7 +154,7 @@ export default function ProductsPage() {
               <span className="font-primary text-[32px] font-extrabold text-[var(--primary)]">
                 $4,199
               </span>
-              <Button label="VIEW DETAILS" variant="accent" />
+              <Button label="VIEW TITANIUM FORCE DETAILS" href="/products" variant="accent" />
             </div>
           </div>
         </section>
@@ -130,8 +193,8 @@ export default function ProductsPage() {
           <CTABanner
             headline="Can't Decide?"
             subline="Our watch experts are here to help you find the perfect timepiece."
-            buttonLabel="CONTACT US"
-            buttonHref="#"
+            buttonLabel="VIEW SPECIAL OFFERS"
+            buttonHref="/offers"
           />
         </section>
 
