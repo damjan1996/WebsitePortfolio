@@ -55,5 +55,11 @@ next-env.d.ts
 # workflow / internal
 Workflow/
 
+# lock files (using npm/package-lock.json)
+pnpm-lock.yaml
+
 # OS
 Thumbs.db
+
+.vercel
+.env*.local
