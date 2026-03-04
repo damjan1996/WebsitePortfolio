@@ -32,7 +32,7 @@ export default function Home() {
               </p>
               <div className="flex items-center gap-4 flex-wrap">
                 <Button label="EXPLORE COLLECTION" href="/products" variant="primary" />
-                <Button label="LEARN MORE" href="/about" variant="ghost" />
+                <Button label="ABOUT WATCH PRO" href="/about" variant="ghost" />
               </div>
             </div>
             <div className="relative w-full max-w-[520px] aspect-square rounded-[var(--radius-xl)] overflow-hidden bg-[var(--muted)]">
@@ -173,7 +173,7 @@ export default function Home() {
               title="From the Journal"
               description="Insights, stories, and guides from the world of horology."
               ctaLabel="READ ALL"
-              ctaHref="#"
+              ctaHref="/about"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
               {blogPosts.map((post) => (

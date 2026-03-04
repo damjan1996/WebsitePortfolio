@@ -27,23 +27,23 @@ export default function Footer({
           <div className="flex items-center gap-6">
             <Link
               href="#"
-              className="text-[12px] font-medium tracking-[0.5px] text-white/40 hover:text-white/60 transition-colors"
+              className="text-[12px] font-medium tracking-[0.5px] text-white/70 hover:text-white/90 transition-colors"
             >
               FACEBOOK
             </Link>
             <Link
               href="#"
-              className="text-[12px] font-medium tracking-[0.5px] text-white/40 hover:text-white/60 transition-colors"
+              className="text-[12px] font-medium tracking-[0.5px] text-white/70 hover:text-white/90 transition-colors"
             >
               TWITTER
             </Link>
           </div>
-          <span className="text-[12px] font-medium tracking-[0.5px] text-white/40">
+          <span className="text-[12px] font-medium tracking-[0.5px] text-white/70">
             2026
           </span>
           <div className="flex items-center gap-4 md:gap-6">
-            <span className="text-[11px] md:text-[12px] text-white/40">+92 3072321692</span>
-            <span className="text-[11px] md:text-[12px] font-medium tracking-[0.5px] text-white/40">
+            <span className="text-[12px] md:text-[12px] text-white/70">+92 3072321692</span>
+            <span className="text-[12px] md:text-[12px] font-medium tracking-[0.5px] text-white/70">
               DESIGN BY STUDIO
             </span>
           </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +10,17 @@ import CTABanner from "@/components/ui/CTABanner";
 import Button from "@/components/ui/Button";
 import { products } from "@/data/products";
 import { Award, Wrench, Clock } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Our Collection",
+  description:
+    "Explore our curated collection of luxury timepieces. From precision chronographs to elegant dress watches, find the timepiece that defines your style.",
+  openGraph: {
+    title: "Watch Pro Collection",
+    description:
+      "Explore our curated collection of luxury timepieces — precision chronographs, dress watches, and more.",
+  },
+};
 
 export default function ProductsPage() {
   return (

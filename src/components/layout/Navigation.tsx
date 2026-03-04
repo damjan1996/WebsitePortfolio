@@ -36,6 +36,7 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
               className={`text-[13px] font-medium tracking-[0.5px] transition-colors ${
                 pathname === link.href
                   ? "text-[var(--foreground)]"
@@ -49,10 +50,15 @@ export default function Navigation() {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
-          <button className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-[var(--border)]">
+          <button
+            aria-label="View grid layout"
+            className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-[var(--border)]"
+          >
             <Grid2x2 className="w-[18px] h-[18px] text-[var(--foreground)]" />
           </button>
           <button
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
             className="md:hidden flex items-center justify-center w-10 h-10"
             onClick={() => setMobileOpen(!mobileOpen)}
           >

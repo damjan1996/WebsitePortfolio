@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +10,17 @@ import { stats, values, story, craftsmanship } from "@/data/about";
 import { Shield, Gem, Heart } from "lucide-react";
 
 const iconMap = { Shield, Gem, Heart } as const;
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "For over two decades, Watch Pro has been at the forefront of luxury watchmaking — combining Swiss precision with bold, contemporary design.",
+  openGraph: {
+    title: "About Watch Pro",
+    description:
+      "For over two decades, Watch Pro has been at the forefront of luxury watchmaking.",
+  },
+};
 
 export default function AboutPage() {
   return (

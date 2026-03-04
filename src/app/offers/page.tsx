@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
@@ -11,6 +12,17 @@ import { dealProducts } from "@/data/products";
 import { Truck, RotateCcw, ShieldCheck, Gift } from "lucide-react";
 
 const iconMap = { Truck, RotateCcw, ShieldCheck, Gift } as const;
+
+export const metadata: Metadata = {
+  title: "Special Offers",
+  description:
+    "Exceptional timepieces at exceptional prices. Don't miss these limited-time offers on Watch Pro's finest luxury watches.",
+  openGraph: {
+    title: "Watch Pro Special Offers",
+    description:
+      "Limited-time offers on premium luxury watches. Save on exceptional timepieces.",
+  },
+};
 
 export default function OffersPage() {
   return (
